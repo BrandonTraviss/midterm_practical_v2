@@ -1,0 +1,168 @@
+/* Q2 Starter — Web Fonts + Fluid Typography + Dashboard Layout
+
+Tasks: 
+
+1.) Define & apply colours using CSS variables and var() 
+2.) Load and apply a custom font
+3.) Create layout navigation with Flexbox & create a sticky navbar 
+4.) Create a flexible, fluid grid layout for cards without media queries 
+5.) Ensure CSS is efficient, well-formatted and valid */
+
+/* FONT */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --radius: 0.75rem;
+
+  /* Colors */
+  --nav-bg:#332E3C;
+  --font-white:#FFF;
+  --card-bg:#dfdee7;
+  --hero-bg:#2d292b;
+  --link-text:#c7d2ff;
+  --footer-bg:#332E3C;
+  --content-grid-bg:#2d292b;
+  --font-custom:font-family: "Roboto", sans-serif;
+}
+/* 2) Base */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body{
+  font-family: Roboto;
+}
+/* Font Scaling */
+h1{
+  line-height: 1.25;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+h2{
+  line-height: 1.25;
+  font-size: clamp(1.25rem, 2vw, 2.5rem);
+}
+p, a{
+  line-height: 1.25;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+small{
+  line-height: 1.25;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+}
+body {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline-offset: 2px;
+}
+
+/* 3) Header — Flex nav */
+.site-header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--nav-bg);
+}
+.site-header a {
+  color: var(--link-text);
+}
+.logo {
+  font-weight: 800;
+  font-size: var(--step-1);
+}
+
+.site-nav {
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+}
+
+.nav-link {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.cta-btn {
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* 4) Hero */
+.hero {
+  color: var(--font-white);
+  background-color: var(--hero-bg);
+  grid-area: hero;
+  padding: 2rem;
+}
+
+.hero .lead {
+  max-width: 68ch;
+}
+
+/* 5) Grid — Courses */
+.page {
+  display: grid;
+  grid-template-areas:
+    "hero hero hero"
+    "cards cards cards";
+}
+
+.content-grid {
+  background-color: var(--content-grid-bg);
+  grid-area: cards;
+  gap: 1rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+}
+
+/* 6) Cards */
+.card {
+  border: 1px solid black;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  margin: 0.5rem 0 0.25rem;
+}
+
+.site-footer {
+  color: var(--font-white);
+  background-color: var(--footer-bg);
+  padding: var(--space-2);
+}
+.site-footer a{
+  color: var(--link-text);
+}
